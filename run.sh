@@ -33,11 +33,12 @@ if [[ -z ${BRANCH} ]]; then
     exit 1
 fi
 #end check
+if [[ ${FORCE,,} != "yes" ]];then
+  LATEST_COMMIT=$(curl -s -H "Authorization: token ${TOKEN}" https://api.github.com/repos/${REPO_USER}/${REPO_NAME}/commits/${BRANCH} | jq ".sha"| tr -d \")
+  echo "LATEST_COMMIT:$LATEST_COMMIT"
 
-LATEST_COMMIT=$(curl -s -H "Authorization: token ${TOKEN}" https://api.github.com/repos/${REPO_USER}/${REPO_NAME}/commits/${BRANCH} | jq ".sha"| tr -d \")
-echo "LATEST_COMMIT:$LATEST_COMMIT"
-
-if [[ "${COMMIT}" != "${LATEST_COMMIT}" ]];then
-        echo "${COMMIT} is not the latest commit on reppository ${REPO_NAME}, branch ${BRANCH}"
-        exit 1
+  if [[ "${COMMIT}" != "${LATEST_COMMIT}" ]];then
+          echo "${COMMIT} is not the latest commit on reppository ${REPO_NAME}, branch ${BRANCH}"
+          exit 1
+  fi
 fi

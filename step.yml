@@ -1,5 +1,5 @@
 name: verify_branch_last_commit
-version: 0.0.3
+version: 0.0.4
 summary: Verify if the lastst branch commit is the same with the one that is provided (github api)
 tags:
   - branch name
@@ -19,5 +19,8 @@ properties:
     type: string
     required: true
   - name: COMMIT
+    type: string
+    required: true
+  - name: FORCE
     type: string
     required: true
