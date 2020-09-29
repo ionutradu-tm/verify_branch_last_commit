@@ -39,7 +39,7 @@ if [[ ${FORCE,,} != "yes" ]];then
   echo "LATEST_COMMIT:$LATEST_COMMIT"
 
   if [[ "${COMMIT}" != "${LATEST_COMMIT}" ]];then
-          echo "${COMMIT} is not the latest commit on reppository ${REPO_NAME}, branch ${BRANCH}"
+          echo "${COMMIT} is not the latest commit ${LATEST_COMMIT} on reppository ${REPO_NAME}, branch ${BRANCH}"
           exit 1
   fi
 fi
